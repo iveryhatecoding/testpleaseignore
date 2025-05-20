@@ -17,6 +17,7 @@ app.get('/api/clients', async (req, res) => {
     `);
     res.json(result.rows);
   } catch (err) {
+    console.error('❌ API error:', err);
     res.status(500).json({ error: err.message });
   }
 });
