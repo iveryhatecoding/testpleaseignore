@@ -7,7 +7,7 @@ const PORT = process.env.PORT || 3000;
 
 // ✅ Use CORS before routes
 app.use(cors({
-  origin: 'https://iveryhatecoding.github.io',
+  origin: '*',
   methods: ['GET'],
 }));
 
