@@ -5,13 +5,10 @@ import { pool } from './db.js';
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// CORS setup: Allow only your GitHub Pages frontend
+// ✅ Allow all origins (for testing GitHub Pages frontend)
 app.use(cors({
-  origin: 'https://iveryhatecoding.github.io'  // <- only allow your frontend origin
+  origin: '*'
 }));
-
-// Optional: JSON parsing middleware in case you expand with POST/PUT later
-app.use(express.json());
 
 app.get('/api/clients', async (req, res) => {
   try {
@@ -22,9 +19,10 @@ app.get('/api/clients', async (req, res) => {
     `);
     res.json(result.rows);
   } catch (err) {
-    console.error('Error fetching data:', err);
-    res.status(500).json({ error: 'Internal Server Error' });
+    console.error('[SERVER ERROR]', err);
+    res.status(500).json({ error: 'Internal Server Error: ' + err.message });
   }
 });
 
-app.listen(PORT, () => console.log(`✅ Server running on port ${PORT}`));
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+
