@@ -6,7 +6,11 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 // ✅ Use CORS before routes
-app.use(cors());
+app.use(cors({
+  origin: 'https://iveryhatecoding.github.io',
+  methods: ['GET'],
+}));
+
 
 app.get('/api/clients', async (req, res) => {
   try {
